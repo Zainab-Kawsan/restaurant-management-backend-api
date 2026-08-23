@@ -150,15 +150,19 @@ Customers can:
 GET /menu
 POST /order
 GET /my-orders
+```
+
 Admin
 
 Admins can:
-
+```text
 POST /menu
 PUT /menu/{id}
 DELETE /menu/{id}
 GET /orders
 PUT /order/{id}/status
+```
+
 
 Admin-only endpoints are protected using role-based authorization.
 
