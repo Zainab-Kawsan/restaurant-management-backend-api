@@ -49,6 +49,27 @@ The application uses MySQL with the following tables:
 - orders
 - order_items
 
+## 🔐 Authentication
+
+The API uses JWT Bearer Authentication.
+
+The authentication flow is:
+
+Signup
+   ↓
+User Account
+   ↓
+Login
+   ↓
+JWT Access Token
+   ↓
+Authorize Protected Endpoints
+
+Passwords are hashed before being stored in the database.
+
+Passwords are never returned in API responses.
+
+
 ## 📡 API Endpoints
 
 ### Authentication
@@ -116,6 +137,32 @@ ReDoc:
 http://127.0.0.1:8000/redoc
 
 <img width="960" height="509" alt="rest-swagger" src="https://github.com/user-attachments/assets/31ff73a6-d5a4-48e4-973c-deeea46f6ccc" />
+
+
+## 👥 User Roles
+
+The system supports two roles:
+
+Customer
+
+Customers can:
+
+GET /menu
+POST /order
+GET /my-orders
+Admin
+
+Admins can:
+
+POST /menu
+PUT /menu/{id}
+DELETE /menu/{id}
+GET /orders
+PUT /order/{id}/status
+
+Admin-only endpoints are protected using role-based authorization.
+
+
 
 
 
