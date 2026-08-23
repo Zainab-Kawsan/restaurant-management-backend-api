@@ -153,7 +153,7 @@ GET /my-orders
 Admin
 
 Admins can:
-```text
+
 POST /menu
 PUT /menu/{id}
 DELETE /menu/{id}
