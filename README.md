@@ -115,3 +115,7 @@ ReDoc:
 
 http://127.0.0.1:8000/redoc
 
+<img width="960" height="509" alt="rest-swagger" src="https://github.com/user-attachments/assets/31ff73a6-d5a4-48e4-973c-deeea46f6ccc" />
+
+
+
