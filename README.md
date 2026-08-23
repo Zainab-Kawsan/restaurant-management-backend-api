@@ -146,14 +146,14 @@ The system supports two roles:
 Customer
 
 Customers can:
-
+```text
 GET /menu
 POST /order
 GET /my-orders
 Admin
 
 Admins can:
-
+```text
 POST /menu
 PUT /menu/{id}
 DELETE /menu/{id}
