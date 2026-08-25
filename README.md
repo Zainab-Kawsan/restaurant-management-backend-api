@@ -168,5 +168,111 @@ Admin-only endpoints are protected using role-based authorization.
 
 
 
+## Deployment
+
+### 1. Create Online MySQL Database
+
+We used **Aiven MySQL** as the cloud database so the deployed FastAPI application can access the database online.
+
+The database connection uses:
+
+```env
+DATABASE_URL=mysql+pymysql://USER:PASSWORD@HOST:PORT/defaultdb
+````
+
+### 2. Configure Environment Variables
+
+The application reads the database and security settings from environment variables:
+
+```env
+DATABASE_URL=...
+SECRET_KEY=...
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=60
+```
+
+The `.env` file is not uploaded to GitHub.
+
+### 3. Run Database Migrations
+
+After connecting the project to the online database:
+
+```bash
+alembic upgrade head
+```
+
+This creates the required tables
+
+### 4. Push Project to GitHub
+
+```bash
+git add .
+git commit -m "Prepare project for deployment"
+git push origin main
+```
+
+### 5. Create Render Web Service
+
+On Render:
+
+```text
+New → Web Service
+```
+
+Connect the GitHub repository and select the `main` branch.
+
+### 6. Configure Render
+
+**Build Command:**
+
+```bash
+pip install -r requirements.txt
+```
+
+**Start Command:**
+
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port $PORT
+```
+
+### 7. Add Environment Variables
+
+In Render → Environment Variables, add:
+
+```text
+DATABASE_URL
+SECRET_KEY
+ALGORITHM
+ACCESS_TOKEN_EXPIRE_MINUTES
+```
+
+### 8. Deploy
+
+Click **Deploy Web Service**.
+
+Render will:
+
+```text
+GitHub
+   ↓
+Install dependencies
+   ↓
+Start FastAPI
+   ↓
+Connect to Aiven MySQL
+   ↓
+Application online
+```
+
+### 9. Access the API
+
+After deployment, Render provides a public URL:
+
+Swagger documentation:
+
+```text
+https://restaurant-management-backend-api-adv7.onrender.com/docs
+```
+
 
 
